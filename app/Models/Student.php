@@ -10,7 +10,7 @@ class Student extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['class_id','student_id', 'name', 'age'];
+    protected $fillable = ['class_id','student_code', 'name', 'age'];
 
     public function cls(): BelongsTo
     {

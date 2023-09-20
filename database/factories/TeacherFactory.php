@@ -19,7 +19,7 @@
 //     {
 
 //         return [
-//             'teacher_id'=>fake(),
+//             'teacher_code'=>fake(),
 //             'teacher_name' => fake()->words(5,true),
 //             'email' => fake()->unique()->safeEmail,
 
@@ -54,12 +54,25 @@ class TeacherFactory extends Factory
      */
     public function definition()
     {
+        $subjects = collect([
+            'TELUGU',
+            'HINDI',
+            'ENGLISH',
+            'MATHS',
+            'SCIENCE',
+            'SOCIAL',
+            'COMPUTERS',
+            'GAMES',
+            'YOGA',
+        ]);
+
         return [
-            'teacher_id' => 'TET-ID'. $this->faker->unique()->randomNumber(3),
+            'teacher_code' => 'TET-ID'. $this->faker->unique()->randomNumber(3),
             'teacher_name' => $this->faker->words(2, true),
             'email' => $this->faker->unique()->safeEmail,
             'address' => $this->faker->word(),
             'phone_number' => $this->faker->phoneNumber,
+            'subject'=>$subjects->random(1),
             'age' => $this->faker->numberBetween(20, 60),
             'date_of_birth' => $this->faker->date,
             'gender' => $this->faker->randomElement(['MALE','FEMALE']),

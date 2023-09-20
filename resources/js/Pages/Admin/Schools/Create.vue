@@ -47,7 +47,6 @@ const submit = () => {
                                     <TextInput id="school_name" type="text" v-model="form.school_name"
                                         :disabled="form.processing" />
                                     <InputError :message="form.errors.school_name" />
-                                    <!-- Update the error message field -->
                                 </div>
 
                                 <div class="form-group">
@@ -61,7 +60,6 @@ const submit = () => {
                                     <TextInput id="principal_name" type="text" v-model="form.principal_name"
                                         :disabled="form.processing" />
                                     <InputError :message="form.errors.principal_name" />
-                                    <!-- Update the error message field -->
                                 </div>
 
                                 <div class="form-group">
@@ -84,7 +82,7 @@ const submit = () => {
                                 <div>
                                     <PrimaryButton :disabled="form.processing">Create New School</PrimaryButton>
                                 </div>
-                                
+
                             </form>
                         </div>
                     </div>

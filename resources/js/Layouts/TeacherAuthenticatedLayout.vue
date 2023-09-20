@@ -17,8 +17,8 @@ const showingNavigationDropdown = ref(false);
 
         <h1>TEACHER</h1>
 
-        <div class="min-h-screen bg-gray-50">
-            <nav class="bg-white border-b border-gray-100">
+        <div class="min-h-screen bg-red-50">
+            <nav class="bg-white border-b border-green-200">
 
                  <!-- Primary Navigation Menu -->
 
@@ -33,7 +33,7 @@ const showingNavigationDropdown = ref(false);
 
                                 <!-- --- <Link :href="route('dashboard')"> --- -->
 
-                                <Link :href="route('home')">
+                                <Link :href="route('Teacherhome')">
                                 <ApplicationLogo class="block h-9 w-auto fill-current text-gray-800" />
                                 </Link>
 
@@ -43,31 +43,17 @@ const showingNavigationDropdown = ref(false);
 
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
 
+                                <NavLink v-if="('teacher.viewAny')" :href="route('teacher.classes.index')"
+                                    :active="route().current('teacher.classes.index')">
+                                    Classes
+                                </NavLink>
 
-                                <NavLink v-if="('teacher.viewAny')" :href="route('admin.teacher.index')"
-                                    :active="route().current('admin.teacher.index')">
-                                    Teachers
+                                <NavLink v-if="('teacher.viewAny')" :href="route('teacher.students.index')"
+                                    :active="route().current('teacher.students.index')">
+                                    Students
                                 </NavLink>
 
                                 <!-- --- can --- -->
-
-                                <NavLink v-if="('teacher.viewAny')" :href="route('admin.teacher.index')"
-                                    :active="route().current('admin.teacher.index')">
-                                    Subjects
-                                </NavLink>
-
-                                <NavLink v-if="('teacher.viewAny')" :href="route('admin.teacher.index')"
-                                    :active="route().current('admin.teacher.index')">
-                                    Timetables
-                                </NavLink>
-
-
-
-                                <NavLink v-if="can('student.viewAny') && can('cls.viewAny')"
-                                    :href="route('teacher.section')" :active="route().current('teacher.section')">School
-                                    Section
-                                </NavLink>
-
 
                             </div>
 
@@ -135,8 +121,6 @@ const showingNavigationDropdown = ref(false);
                     </div>
                 </div>
 
-
-
                 <!-- --- Responsive Navigation Menu --- -->
 
                 <div :class="{ block: showingNavigationDropdown, hidden: !showingNavigationDropdown }" class="sm:hidden">
@@ -145,8 +129,8 @@ const showingNavigationDropdown = ref(false);
                         <!-- --- <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                             Dashboard --- -->
 
-                        <ResponsiveNavLink :href="route('home')" :active="route().current('home')">
-                            Home
+                        <ResponsiveNavLink :href="route('Teacherhome')" :active="route().current('Teacherhome')">
+                            TeacherHome
                         </ResponsiveNavLink>
 
                     </div>

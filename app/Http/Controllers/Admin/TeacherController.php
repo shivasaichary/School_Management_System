@@ -64,4 +64,11 @@ class TeacherController extends Controller
 
         return redirect()->route('admin.teachers.index')->with('status', 'Teacher deleted successfully.');
     }
+
+    public function show(Teacher $teacher): Response
+    {
+        return Inertia::render('Admin/Teachers/Index', [
+            'teacher' => $teacher,
+        ]);
+    }
 }

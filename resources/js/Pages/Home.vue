@@ -21,7 +21,7 @@ defineProps({
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="bg-white overflow-hidden shadow-xl xl:rounded-xxl">
                     <div class="p-8 text-gray-900">
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-x-14 gap-y-10">
                             <div v-for="school in schools" :key="school.id">
@@ -46,10 +46,6 @@ defineProps({
                                 <div class="text-s text-gray-500">
                                     ADDRESS: {{ school.address }}
                                 </div>
-
-                                <!-- <div class="text-lg text-red-600">
-                                    Y.O.E: {{ school.yoe }}
-                                </div> -->
 
                                 </Link>
                             </div>

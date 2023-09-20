@@ -61,7 +61,7 @@ defineProps({
 
                             <div>
                                 <Link class="btn btn-secondary btn-sm"
-                                    :href="route('teacher.students.create', { cls_id: cls.id })">
+                                    :href="route('teacher.students.create', { cls_code: cls.id })">
                                 Add Student to {{ cls.name }}
                                 </Link>
                             </div>

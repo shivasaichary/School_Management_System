@@ -13,11 +13,22 @@ use App\Http\Requests\Teacher\UpdateStudentRequest;
 
 class StudentController extends Controller
 {
+    public function index(): Response
+    {
+        $this->authorize('cls.viewAny');
+
+        $classes = Cls::all();
+
+        return Inertia::render('Teacher/Students/Index', [
+            'classes' => $classes,
+        ]);
+    }
+
     public function create(): Response
     {
         return Inertia::render('Teacher/Students/Create', [
             'classes' => Cls::all(['id', 'name']),
-            'cls_id' => request('cls_id'),
+            'cls_code' => request('cls_code'),
         ]);
     }
 
@@ -25,7 +36,7 @@ class StudentController extends Controller
     {
         Student::create($request->validated());
 
-        return to_route('teacher.section')
+        return redirect()->route('teacher.section')
             ->withStatus('Student created successfully.');
     }
 
@@ -49,7 +60,7 @@ class StudentController extends Controller
     {
         $student->delete();
 
-        return to_route('teacher.section')
+        return redirect()->route('teacher.section')
             ->withStatus('Student deleted successfully.');
     }
 }

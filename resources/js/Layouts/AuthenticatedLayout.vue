@@ -48,26 +48,31 @@ const showingNavigationDropdown = ref(false);
 
                                 <NavLink :href="route('admin.schools.index')"
                                     :active="route().current('admin.schools.index')">
-                                    Schools
+                                    Schools Data
                                 </NavLink>
 
-                                <!-- <NavLink v-if= "('teacher.viewAny')" :href="route('admin.teacher.index')"
-                                    :active="route().current('admin.teacher.index')">
-                                    Teachers
-                                </NavLink> -->
+                                <NavLink :href="route('admin.teachers.index')"
+                                    :active="route().current('admin.teachers.index')">
+                                    Teachers Data
+                                </NavLink>
 
-                                <!-- v-if="can('school.viewAny')" -->
+                                <NavLink :href="route('admin.results.index')"
+                                    :active="route().current('admin.results.index')">
+                                    Student Results
+                                </NavLink>
+
+                                <!-- v-if="can('school.viewAny')"  v-if= "('teacher.viewAny')"-->
 
                                 <!--
                                 <NavLink v-if="userHasPermission" :href="route('admin.schools.index')"
                                     :active="route().current('admin.schools.index')">
                                     Schools
                                 </NavLink> -->
-
-                                <NavLink v-if="can('student.viewAny') && can('cls.viewAny')"
+<!--
+                                <NavLink v-if="('student.viewAny') && ('cls.viewAny')"
                                     :href="route('teacher.section')" :active="route().current('teacher.section')">School
                                     Section
-                                </NavLink>
+                                </NavLink> -->
 
                             </div>
 
@@ -195,11 +200,11 @@ const showingNavigationDropdown = ref(false);
 
         <!-- Footer Section -->
 
-        <footer class="bg-white text-black py-4">
+        <footer class="bg-black text-white py-4">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between items-center">
                     <div>
-                        <p>&copy; 2023 Your Company</p>
+                        <p>&copy; 2023 &nbsp; TE Institutions </p>
                     </div>
                     <div>
                         <a href="#">Privacy Policy</a> |

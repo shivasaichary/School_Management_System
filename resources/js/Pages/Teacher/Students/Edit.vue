@@ -1,12 +1,11 @@
 <script setup>
-import TeacherAuthenticatedLayout from '@/Layouts/TeacherAuthenticatedLayout.vue'
-import { Head, useForm } from '@inertiajs/vue3'
-import InputError from '@/Components/InputError.vue'
-import InputLabel from '@/Components/InputLabel.vue'
-import PrimaryButton from '@/Components/PrimaryButton.vue'
-import TextInput from '@/Components/TextInput.vue'
-import SelectInput from '@/Components/SelectInput.vue'
-import TeacherAuthenticatedLayout from '@/Layouts/TeacherAuthenticatedLayout.vue'
+import TeacherAuthenticatedLayout from '@/Layouts/TeacherAuthenticatedLayout.vue';
+import { Head, useForm } from '@inertiajs/vue3';
+import InputError from '@/Components/InputError.vue';
+import InputLabel from '@/Components/InputLabel.vue';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
+import TextInput from '@/Components/TextInput.vue';
+import SelectInput from '@/Components/SelectInput.vue';
 
 const props = defineProps({
     student: {

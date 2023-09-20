@@ -43,7 +43,7 @@ const submit = () => {
 
                                 <div>
                                     <PrimaryButton :processing="form.processing">
-                                        Update Student cls
+                                        Update Student class
                                     </PrimaryButton>
                                 </div>
                             </form>

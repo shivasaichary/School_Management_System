@@ -16,11 +16,12 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Cls::class)->constrained()->cascadeOnDelete();
             $table->string('name');
+            $table->string('student_code');
             $table->unsignedInteger('age');
-            $table->string('address');
+            $table->string('gender');
             $table->string('phone_number');
             $table->string('email');
-            $table->string('gender');
+            $table->string('address');
             $table->timestamps();
         });
     }

@@ -24,6 +24,7 @@ class StudentFactory extends Factory
             'phone_number' => fake()->phoneNumber(12),
             'email'=>fake()->email(),
             'gender' =>fake()->randomElement(['Male','Female']),
+            'student_code'=> 'TES-ID'. fake()->numberBetween(),
         ];
     }
 }

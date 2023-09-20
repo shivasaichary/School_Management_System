@@ -17,7 +17,7 @@ class School extends Model
 
     public function principal(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'principal_id');
+        return $this->belongsTo(User::class, 'principal_code');
     }
 
     public function city(): BelongsTo

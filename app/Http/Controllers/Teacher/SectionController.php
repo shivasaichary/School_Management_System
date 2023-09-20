@@ -15,7 +15,7 @@ class SectionController extends Controller
         $this->authorize('cls.viewAny');
         return Inertia::render('Teacher/Section', [
             'classes' => Cls::query()
-                ->where('school_id', auth()->user()->school->id)
+                ->where('school_code', auth()->user()->school->id)
                 ->with('students')
                 ->get(),
         ]);

@@ -16,15 +16,12 @@ return new class extends Migration
     {
         Schema::create('schools', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('principal_id')->references('id')->on('users');
+            $table->foreignId('principal_code')->references('id')->on('users');
             $table->foreignIdFor(City::class)->constrained();
             $table->string('principal_name');
             $table->string('school_name');
             $table->text('address');
             $table->string('school_code')->unique();
-
-            // $table->unsignedBigInteger('yoe');
-            // $table->year('yoe');
             $table->timestamps();
         });
     }

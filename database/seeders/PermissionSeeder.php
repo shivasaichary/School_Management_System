@@ -41,6 +41,6 @@ class PermissionSeeder extends Seeder
                 Permission::create(['name' => $permission]);
             });
 
-
+        // Permission::create(['name']);
     }
 }

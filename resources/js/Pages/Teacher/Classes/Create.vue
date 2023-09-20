@@ -9,7 +9,7 @@ const form = useForm({
     name: ''
 })
 const submit = () => {
-    form.post(route('teacher.classes.store')) // Assuming you have a route for adding classes by teachers
+    form.post(route('teacher.classes.store'))
 }
 </script>
 

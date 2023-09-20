@@ -14,16 +14,15 @@ return new class extends Migration
     {
         Schema::create('teachers', function (Blueprint $table) {
             $table->id();
-            $table->string('teacher_id');
+            $table->string('teacher_code');
             $table->string('teacher_name')->nullable();
             $table->string('email')->unique();
-
             $table->string('address');
             $table->string('phone_number')->nullable();
+            $table->string('subject');
             $table->integer('age');
             $table->date('date_of_birth')->nullable();
             $table->string('gender')->nullable();
-
             $table->timestamps();
         });
     }

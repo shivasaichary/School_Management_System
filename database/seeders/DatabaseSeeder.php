@@ -10,6 +10,8 @@ use App\Models\Student;
 use App\Models\School;
 use App\Models\User;
 use App\Models\Teacher;
+use Database\Factories\StudentTimetableFactory;
+use ResultsSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -24,6 +26,8 @@ class DatabaseSeeder extends Seeder
             PermissionSeeder::class,
             RoleSeeder::class,
             TeacherSeeder::class,
+            StudentResultsSeeder::class,
+            // StudentTimetableSeeder::class,
         ]);
 
         $this->seedDemoSchools();
@@ -39,6 +43,5 @@ class DatabaseSeeder extends Seeder
 
         User::factory(18)->teacher()->has($school)->create();
 
-        // You can add additional seeders or customization here if needed
     }
 }

@@ -15,7 +15,7 @@ class ClsController extends Controller
 {
     public function index(): Response
     {
-        // $this->authorize('cls.viewAny');
+        $this->authorize('cls.viewAny');
 
         $classes = Cls::all();
 
@@ -58,6 +58,6 @@ class ClsController extends Controller
         $cls->delete();
 
         return to_route('teacher.section')
-            ->withStatus('student Cls deleted successfully.');
+            ->withStatus('student Class deleted successfully.');
     }
 }

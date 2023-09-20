@@ -17,7 +17,7 @@ class SchoolController extends Controller
 
     public function index(): Response
     {
-        $this->authorize('school.viewAny');
+        // $this->authorize('school.viewAny');
 
         return Inertia::render('Admin/Schools/Index', [
             'schools' => School::with(['city', 'principal'])->get(),

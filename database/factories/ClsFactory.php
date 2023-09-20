@@ -43,10 +43,37 @@ class ClsFactory extends Factory
             'GAMES',
             'YOGA',
         ]);
+
+        $starting_time = collect([
+
+            '09:00:00',
+
+            '11:00:00',
+
+            '13:00:00',
+
+            '15:00:00',
+
+        ]);
+
+        $ending_time = collect([
+
+            '10:00:00',
+
+            '12:00:00',
+
+            '14:00:00',
+
+            '16:00:00',
+
+        ]);
+
         return [
-            'name'=>$classes->random(),
-            'section'=>fake()->randomElement(['A','B','C','D']),
-            'subject'=>$subjects->random(6),
+            'name' => $classes->random(),
+            'section' => fake()->randomElement(['A', 'B', 'C', 'D']),
+            'subject' => $subjects->random(1),
+            'starting_time' => $starting_time->random(),
+            'ending_time' => $ending_time->random(),
         ];
     }
 }

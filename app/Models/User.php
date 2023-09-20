@@ -96,7 +96,7 @@ class User extends Authenticatable
 
     public function school(): HasOne
     {
-        return $this->hasOne(School::class, 'principal_id');
+        return $this->hasOne(School::class, 'principal_code');
     }
 
     public function city(): BelongsTo

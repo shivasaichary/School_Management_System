@@ -15,7 +15,7 @@ class StoreStudentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'cls_id' => ['required', 'exists:classes,id'], // Assuming you have a 'classes' table
+            'cls_code' => ['required', 'exists:classes,id'], // Assuming you have a 'classes' table
             'name'     => ['required', 'string', 'max:255'],
             'age'      => ['required', 'integer'],
         ];
@@ -24,8 +24,8 @@ class StoreStudentRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'cls_id.required' => 'The class is required.',
-            'cls_id.exists' => 'The selected class does not exist.',
+            'cls_code.required' => 'The class is required.',
+            'cls_code.exists' => 'The selected class does not exist.',
             'name.required' => 'The student name is required.',
             'name.string' => 'The student name must be a string.',
             'name.max' => 'The student name must not exceed 255 characters.',

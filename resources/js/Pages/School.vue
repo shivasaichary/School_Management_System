@@ -1,7 +1,7 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 // import { Head } from '@inertiajs/vue3';
-import { Head, usePage, useForm } from '@inertiajs/vue3'
+import { Head, usePage, useForm } from '@inertiajs/vue3';
 
 
 const page = usePage()
@@ -48,11 +48,9 @@ defineProps({
                                         <div class="">STUDENT NAME: {{ student.name }}</div>
                                         <div class="">AGE: {{ student.age }}</div>
                                         <div class="">GENDER: {{ student.gender }}</div>
-                                        <div class="">ADDRESS: {{ student.address }}</div>
                                         <div class="">PH.NO: {{ student.phone_number }}</div>
                                         <div class="">EMAIL: {{ student.email }}</div>
-
-
+                                        <div class="">ADDRESS: {{ student.address }}</div>
 
                                         <!-- <div class="grow flex items-end">
                                             <button class="btn btn-primary btn-sm" type="button">
@@ -70,7 +68,7 @@ defineProps({
                                             :src="`https://picsum.photos/seed/${student.id}/200/110?blur=2`" />
                                         </div>
 
-                                            <div class="flex mx-auto">STUDENT ID: {{ student.id }}</div>
+                                            <div class="flex mx-auto">STUDENT ID: {{ student.student_code }}</div>
 
                                     </div>
                                 </div>
