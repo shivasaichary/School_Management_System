@@ -10,8 +10,7 @@ class UpdateSchoolRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        return Gate::allows('school.update');
-        // return true;
+        return true;
     }
 
     public function rules(): array
@@ -19,6 +18,8 @@ class UpdateSchoolRequest extends FormRequest
         return [
             'school_name' => ['required', 'string', 'max:255'],
             'city_id' => ['required', 'numeric', 'exists:cities,id'],
+            'principal_name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,'.$this->email.',id'],
             'address' => ['required', 'string', 'max:255'],
         ];
     }

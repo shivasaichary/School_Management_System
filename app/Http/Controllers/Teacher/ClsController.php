@@ -8,56 +8,108 @@ use Inertia\Response;
 use App\Models\Cls;
 use App\Http\Requests\Teacher\StoreClsRequest;
 use App\Http\Requests\Teacher\UpdateClsRequest;
+use Illuminate\Auth\Middleware\Authorize;
 use Illuminate\Http\RedirectResponse;
-
+use Termwind\Components\Dd;
 
 class ClsController extends Controller
 {
     public function index(): Response
     {
-        $this->authorize('cls.viewAny');
+
+        $user = Auth()->user();
 
         $classes = Cls::all();
 
-        return Inertia::render('teacher/classes/Index', [
+        if (!$user->hasPermissionTo('view_class', 'web')) {
+            return response('unauthorize');
+        }
+
+        return Inertia::render('Teacher/Classes/Index', [
             'classes' => $classes,
         ]);
     }
 
-    public function create(): Response
+    public function create()
     {
-        $this->authorize('cls.create');
+        $user = Auth()->user();
+        // Dd($user);
 
-        return Inertia::render('teacher/classes/Create');
+        if (!$user->hasPermissionTo('create_class', 'web')) {
+            return response('unauthorize');
+        }
+
+        return Inertia::render('Teacher/Classes/Create');
     }
 
-    public function store(StoreClsRequest $request): RedirectResponse
+    public function store(StoreClsRequest $request)
     {
-        $request->user()->school->classes()->create($request->only('name'));
 
-        return to_route('teacher.section')
+        $user = Auth()->user();
+
+        if (!$user->hasPermissionTo('create_class', 'web')) {
+            return response()->json(['msg' => 'unauthorize']);
+        }
+
+         cls::create([
+            'class_name' => $request['class_name'],
+            'teacher_name' => $request['teacher_name'],
+            'subject' => $request['subject'],
+            'section' => $request['section'],
+            'starting_time' => $request['starting_time'],
+            'ending_time' => $request['ending_time'],
+        ]);
+
+        return redirect()->route('teacher.classes.index')
             ->withStatus('student classes created successfully.');
     }
 
-    public function edit($cls): Response
+    public function edit(Cls $cls): Response
     {
-        return Inertia::render('teacher/classes/Edit', [
+        $user = Auth()->user();
+
+        if (!$user->hasPermissionTo('update_class', 'web')) {
+            return response('Unauthorize');
+        }
+
+        return Inertia::render('Teacher/Classes/Edit', [
             'cls' => $cls,
         ]);
     }
 
-    public function update(UpdateClsRequest $request, cls $cls): RedirectResponse
+    public function update(UpdateClsRequest $request, cls $cls)
     {
-        $cls->update($request->only('name'));
+        $user = Auth()->user();
 
-        return to_route('teacher.section')->withStatus('student cls updated successfully.');
+        if (!$user->hasPermissionTo('update_class', 'web')) {
+            return response('Unauthorized');
+        }
+
+        $validated =$request->validated();
+
+        $cls->update($validated);
+
+        return redirect()->route('teacher.classes.index')->withStatus('student class updated successfully.');
     }
 
-    public function destroy(Cls $cls)
+    public function destroy(Cls $cls):RedirectResponse
     {
+        $user = Auth()->user();
+
+        if (!$user->hasPermissionTo('delete_class', 'web')) {
+            return response('Unauthorize');
+        }
+
         $cls->delete();
 
-        return to_route('teacher.section')
+        return redirect()->route('teacher.classes.index')
             ->withStatus('student Class deleted successfully.');
+    }
+
+    public function show(Cls $cls):Response
+    {
+        return Inertia::render('Teacher/Classes/Index', [
+            'cls' => $cls,
+        ]);
     }
 }

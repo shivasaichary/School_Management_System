@@ -15,52 +15,98 @@ class StudentController extends Controller
 {
     public function index(): Response
     {
-        $this->authorize('cls.viewAny');
+        $user = Auth()->user();
 
-        $classes = Cls::all();
+        $students = Student::all();
+
+        if (!$user->hasPermissionTo('view_class', 'web')) {
+            return response('unauthorize');
+        }
 
         return Inertia::render('Teacher/Students/Index', [
-            'classes' => $classes,
+            'students' => $students,
         ]);
     }
 
-    public function create(): Response
+    public function create()
     {
-        return Inertia::render('Teacher/Students/Create', [
-            'classes' => Cls::all(['id', 'name']),
-            'cls_code' => request('cls_code'),
-        ]);
+        $user = Auth()->user();
+        if (!$user->hasPermissionTo('create_student', 'web')) {
+            return response('unauthorize');
+        }
+
+        return Inertia::render('Teacher/Students/Create');
     }
 
-    public function store(StoreStudentRequest $request): RedirectResponse
+    public function store(StoreStudentRequest $request)
     {
-        Student::create($request->validated());
+        $user = Auth()->user();
 
-        return redirect()->route('teacher.section')
+        if (!$user->hasPermissionTo('create_student', 'web')) {
+            return response()->json(['msg' => 'unauthorize']);
+        }
+
+        Student::create([
+            // 'user_id'=>2,
+            'student_code'=>'TES-ID'.rand(10,999),
+            'student_name'=>$request['student_name'],
+            'age'=>$request['age'],
+            'gender'=>$request['gender'],
+            'phone_number'=>$request['phone_number'],
+            'email'=>$request['email'],
+            'address'=>$request['address'],
+        ]);
+
+        return redirect()->route('teacher.students.index')
             ->withStatus('Student created successfully.');
     }
 
-    public function edit(Student $student)
+    public function edit(Student $student):Response
     {
+        $user = Auth()->user();
+        if (!$user->hasPermissionTo('update_student', 'web')) {
+            return response('Unauthorize');
+        }
+
         return Inertia::render('Teacher/Students/Edit', [
-            'classes' => Cls::get(['id', 'name']),
             'student'    => $student,
         ]);
     }
 
     public function update(UpdateStudentRequest $request, Student $student)
     {
-        $student->update($request->validated());
+        $user = Auth()->user();
+
+        if (!$user->hasPermissionTo('update_student', 'web')) {
+            return response('Unauthorized');
+        }
+
+        $validated = $request->validated();
+
+        $student->update($validated);
 
         return redirect()->route('teacher.students.index')
             ->with('status', 'Student updated successfully.');
     }
 
-    public function destroy(Student $student)
+    public function destroy(Student $student):RedirectResponse
     {
+        $user = Auth()->user();
+
+        if (!$user->hasPermissionTo('delete_student', 'web')) {
+            return response('Unauthorized');
+        }
+
         $student->delete();
 
-        return redirect()->route('teacher.section')
+        return redirect()->route('teacher.students.index')
             ->withStatus('Student deleted successfully.');
+    }
+
+    public function show(STudent $student): Response
+    {
+        return Inertia::render('Teacher/Students/Index', [
+            'student' => $student,
+        ]);
     }
 }

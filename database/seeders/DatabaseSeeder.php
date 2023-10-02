@@ -22,11 +22,13 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             CitySeeder::class,
-            UserSeeder::class,
-            PermissionSeeder::class,
             RoleSeeder::class,
+            PermissionSeeder::class,
             TeacherSeeder::class,
+            UserSeeder::class,
             StudentResultsSeeder::class,
+            AttendanceSeeder::class,
+            ParentSeeder::class,
             // StudentTimetableSeeder::class,
         ]);
 
@@ -35,13 +37,13 @@ class DatabaseSeeder extends Seeder
 
     public function seedDemoSchools()
     {
+
         $students   = Student::factory(7);
         $classes = Cls::factory(13)->has($students);
         $school = School::factory()->has($classes);
 
         Teacher::factory(20)->create();
-
-        User::factory(18)->teacher()->has($school)->create();
+        User::factory(9)->teacher()->has($school)->create();  // 9 dummy users created as admins
 
     }
 }

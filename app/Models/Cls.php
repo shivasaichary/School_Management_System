@@ -13,7 +13,7 @@ class Cls extends Model
 
     // protected $table = 'classes';
 
-    protected $fillable = ['name'];
+    protected $fillable = ['class_name','section','subject','teacher_name','starting_time','ending_time'];
 
     public function school(): BelongsTo
     {

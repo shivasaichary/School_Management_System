@@ -68,8 +68,8 @@ class TeacherFactory extends Factory
 
         return [
             'teacher_code' => 'TET-ID'. $this->faker->unique()->randomNumber(3),
-            'teacher_name' => $this->faker->words(2, true),
-            'email' => $this->faker->unique()->safeEmail,
+            'teacher_name' => 'teacher',
+            'email' => 'teacher@school.com',
             'address' => $this->faker->word(),
             'phone_number' => $this->faker->phoneNumber,
             'subject'=>$subjects->random(1),

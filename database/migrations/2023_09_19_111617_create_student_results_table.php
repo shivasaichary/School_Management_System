@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string('student_code');
             $table->string('student_name');
-            $table->string('subject_id');
+            $table->string('subject_code');
             $table->string('subject_name');
             $table->integer('marks_obtained');
             $table->date('date_of_exam');

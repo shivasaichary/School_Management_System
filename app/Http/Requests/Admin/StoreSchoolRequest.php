@@ -11,7 +11,7 @@ class StoreSchoolRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        return Gate::allows('school.create');
+        return true;
     }
 
     public function rules(): array

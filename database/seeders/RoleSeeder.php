@@ -15,54 +15,11 @@ class RoleSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function run()
     {
-        $this->createAdminRole();
-        $this->createTeacherRole();
-        $this->createStudentRole();
-        $this->createParentRole();
-    }
-
-    protected function createRole(RoleName $role, Collection $permissions): void
-    {
-        $newRole = Role::create(['name' => $role->value]);
-        $newRole->permissions()->sync($permissions);
-    }
-
-    protected function createAdminRole(): void
-    {
-        $permissions = Permission::query()
-            ->where('name', 'like', 'user.%')
-            ->orWhere('name','like','schools.%')
-            ->pluck('id');
-
-        $this->createRole(RoleName::ADMIN, $permissions);
-    }
-
-    protected function createTeacherRole(): void
-    {
-        $permissions = Permission::query()
-            ->where('name', 'like', 'teacher.%')
-            ->pluck('id');
-
-        $this->createRole(RoleName::TEACHER, $permissions);  //$permissions collect()
-    }
-
-    protected function createStudentRole(): void
-    {
-        $permissions = Permission::query()
-            ->where('name', 'like', 'student.%')
-            ->pluck('id');
-
-        $this->createRole(RoleName::STUDENT, $permissions);
-    }
-
-    protected function createParentRole(): void
-    {
-        $permissions = Permission::query()
-            ->where('name', 'like', 'parent.%')
-            ->pluck('id');
-
-        $this->createRole(RoleName::PARENT, $permissions);
+        Role::updateOrCreate(['name' => 'Admin', 'guard_name' => 'web']);
+        Role::updateOrCreate(['name' => 'Teacher', 'guard_name' => 'web']);
+        Role::updateOrCreate(['name' => 'Student', 'guard_name' => 'web']);
+        Role::updateOrCreate(['name' => 'Parent', 'guard_name' => 'web']);
     }
 }

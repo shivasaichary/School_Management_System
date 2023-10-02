@@ -1,13 +1,18 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head } from '@inertiajs/vue3';
-import { Link } from '@inertiajs/vue3';
+import { Head, Link, useForm } from '@inertiajs/vue3';
 
 defineProps({
     schools: {
         type: Array
     }
 })
+const form = useForm({
+
+})
+const deleteSchool = (school) => {
+    form.delete(route('admin.schools.delete', school))
+}
 </script>
 
 <template>
@@ -67,7 +72,7 @@ defineProps({
 
                                     <td>
                                         <a :href="'mailto:' + school.principal.email" class="text-link">{{
-                                            school.principal.email
+                                            school.email
                                         }}</a>
                                     </td>
 
@@ -85,9 +90,15 @@ defineProps({
                                     </td>
 
                                     <td>
-                                        <Link :href="route('admin.schools.update', school)" class="btn btn-secondary">
+                                        <form @submit.prevent="deleteSchool(school)" method="post">
+
+                                            <button type="submit" class="btn btn-secondary">
+                                                Delete
+                                            </button>
+                                        </form>
+                                        <!-- <Link :href="route('admin.schools.delete', school)" class="btn btn-secondary">
                                         delete
-                                        </Link>
+                                        </Link> -->
                                     </td>
 
                                 </tr>

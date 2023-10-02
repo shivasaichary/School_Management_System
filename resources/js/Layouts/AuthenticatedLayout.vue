@@ -13,11 +13,11 @@ const showingNavigationDropdown = ref(false);
 </script>
 
 <template>
-
     <div>
 
         <div class="min-h-screen bg-gray-50">
             <nav class="bg-white border-b border-gray-100">
+
 
                 <!-- Primary Navigation Menu -->
 
@@ -25,6 +25,7 @@ const showingNavigationDropdown = ref(false);
                     <div class="flex justify-between h-16">
 
                         <div class="flex">
+
 
                             <!-- Logo -->
 
@@ -37,6 +38,7 @@ const showingNavigationDropdown = ref(false);
                                 </Link>
 
                             </div>
+
 
                             <!-- Navigation Links -->
 
@@ -68,7 +70,8 @@ const showingNavigationDropdown = ref(false);
                                     :active="route().current('admin.schools.index')">
                                     Schools
                                 </NavLink> -->
-<!--
+
+                                <!--
                                 <NavLink v-if="('student.viewAny') && ('cls.viewAny')"
                                     :href="route('teacher.section')" :active="route().current('teacher.section')">School
                                     Section
@@ -81,6 +84,7 @@ const showingNavigationDropdown = ref(false);
                         <!-- <div class="hidden sm:flex sm:items-center sm:ml-6"> -->
 
                         <div v-if="$page.props.auth.user" class="hidden sm:flex sm:items-center sm:ml-6">
+
 
                             <!-- Settings Dropdown -->
 
@@ -116,6 +120,7 @@ const showingNavigationDropdown = ref(false);
                             <Link :href="route('login')" class="btn btn-secondary">Login</Link>
                             <Link :href="route('register')" class="btn btn-primary">Register</Link>
                         </div>
+
 
                         <!-- Hamburger -->
 
@@ -215,5 +220,4 @@ const showingNavigationDropdown = ref(false);
         </footer>
 
     </div>
-
 </template>

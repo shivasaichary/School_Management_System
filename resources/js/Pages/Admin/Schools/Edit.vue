@@ -14,30 +14,33 @@ const props = defineProps({
     },
     school: {
         type: Object
+    },
+    principal: {
+        type: Object
     }
 })
 
 const form = useForm({
-    school_name: props.school.name,
-    email: props.principal.email,
-    principal_name: props.principal.name,
-    city: props.school.city_id,
+    school_name: props.school.school_name,
+    email: props.school.email,
+    principal_name: props.school.principal_name,
+    city_id: props.school.city_id,
     address: props.school.address
 })
 
 const submit = () => {
-    form.patch(route('admin.schools.update', props.school))
+    form.put(route('admin.schools.update', props.school))
 }
 </script>
 
 <template>
     <AuthenticatedLayout>
 
-        <Head :title="'Edit ' + school.name" />
+        <Head :title="'Edit ' + school.school_name" />
 
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ 'Edit ' + school.name }}
+                {{ 'Edit ' + school.school_name }}
             </h2>
         </template>
 
@@ -56,13 +59,13 @@ const submit = () => {
 
                                 <div class="form-group">
                                     <InputLabel for="email" value="Email" />
-                                    <TextInput id="email" type="email" v-model="form.email" :disabled="true" />
+                                    <TextInput id="email" type="email" v-model="form.email" :disabled="false" />
                                     <InputError :message="form.errors.email" />
                                 </div>
 
                                 <div class="form-group">
-                                    <InputLabel for="principal_name" value="Owner Name" />
-                                    <TextInput id="principal_name" type="text" v-model="form.principal_name" :disabled="true" />
+                                    <InputLabel for="principal_name" value="Principal Name" />
+                                    <TextInput id="principal_name" type="text" v-model="form.principal_name" :disabled="false" />
                                     <InputError :message="form.errors.principal_name" />
                                 </div>
 

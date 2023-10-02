@@ -33,7 +33,7 @@ defineProps({
                         <div v-for="cls in school.classes" :key="cls.id" class="flex flex-col gap-4  ">
                             <div class="flex justify-between">
                                 <div class="">
-                                    <div class="text-2xl font-bold">CLASS: {{ cls.name }}</div>
+                                    <div class="text-2xl font-bold">CLASS: {{ cls.class_name }}</div>
                                     <div class="text-lg mt-3 font-semibold">SECTION: {{ cls.section }}</div>
                                 </div>
                             </div>
@@ -45,7 +45,7 @@ defineProps({
 
                                     <div class="grow flex flex-col gap-2">
 
-                                        <div class="">STUDENT NAME: {{ student.name }}</div>
+                                        <div class="">STUDENT NAME: {{ student.student_name }}</div>
                                         <div class="">AGE: {{ student.age }}</div>
                                         <div class="">GENDER: {{ student.gender }}</div>
                                         <div class="">PH.NO: {{ student.phone_number }}</div>

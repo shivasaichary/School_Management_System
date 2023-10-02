@@ -5,7 +5,7 @@ import { Head } from '@inertiajs/vue3';
 import { Link } from '@inertiajs/vue3';
 
 defineProps({
-    studentAttendances: {
+    attendances: {
         type: Array
     }
 })
@@ -16,7 +16,7 @@ defineProps({
 
         <Head title="Student Attendance" />
         <template #header>
-            <h2 class="font-semibold text-xl text-blue-800 leading-tight">Student Attendance</h2>
+            <h2 class="font-semibold text-xl text-blue-800 leading-tight">Students Attendance</h2>
         </template>
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -31,7 +31,7 @@ defineProps({
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Student ID</th>
+                                    <th>Student Code</th>
                                     <th>Student Name</th>
                                     <th>Date</th>
                                     <th>Status</th>
@@ -40,14 +40,15 @@ defineProps({
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="attendance in studentAttendances" :key="attendance.id">
+                                <tr v-for="attendance in attendances" :key="attendance.id">
                                     <td>{{ attendance.id }}</td>
                                     <td>{{ attendance.student_code }}</td>
                                     <td>{{ attendance.student_name }}</td>
                                     <td>{{ attendance.date }}</td>
                                     <td>{{ attendance.status }}</td>
                                     <td>
-                                        <Link :href="route('teacher.attendance.edit', attendance)" class="btn btn-secondary">
+                                        <Link :href="route('teacher.attendance.edit', attendance)"
+                                            class="btn btn-secondary">
                                         Edit
                                         </Link>
                                     </td>

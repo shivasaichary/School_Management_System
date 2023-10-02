@@ -1,4 +1,4 @@
- <script setup>
+<script setup>
 
 import { ref } from 'vue';
 import { Link } from '@inertiajs/vue3';
@@ -15,29 +15,29 @@ const showingNavigationDropdown = ref(false);
 <template>
     <div>
 
-        <h1>TEACHER</h1>
 
         <div class="min-h-screen bg-red-50">
             <nav class="bg-white border-b border-green-200">
 
-                 <!-- Primary Navigation Menu -->
+
+                <!-- Primary Navigation Menu -->
 
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">
 
                         <div class="flex">
 
+
                             <!--  Logo -->
 
                             <div class="shrink-0 flex items-center">
 
-                                <!-- --- <Link :href="route('dashboard')"> --- -->
-
-                                <Link :href="route('Teacherhome')">
+                                <Link :href="route('teacher.home')">
                                 <ApplicationLogo class="block h-9 w-auto fill-current text-gray-800" />
                                 </Link>
 
                             </div>
+
 
                             <!-- --- Navigation Links --- -->
 
@@ -45,23 +45,34 @@ const showingNavigationDropdown = ref(false);
 
                                 <NavLink v-if="('teacher.viewAny')" :href="route('teacher.classes.index')"
                                     :active="route().current('teacher.classes.index')">
-                                    Classes
+                                    Class Timetables
                                 </NavLink>
 
                                 <NavLink v-if="('teacher.viewAny')" :href="route('teacher.students.index')"
                                     :active="route().current('teacher.students.index')">
-                                    Students
+                                    Students Data
                                 </NavLink>
 
-                                <!-- --- can --- -->
+                                <NavLink v-if="('teacher.viewAny')" :href="route('teacher.results.index')"
+                                    :active="route().current('teacher.results.index')">
+                                    Students Result
+                                </NavLink>
+
+                                <NavLink v-if="('teacher.viewAny')" :href="route('teacher.attendance.index')"
+                                    :active="route().current('teacher.attendance.index')">
+                                    Attendance Data
+                                </NavLink>
+
+                                <NavLink>
+                                    Parents Data
+                                </NavLink>
 
                             </div>
 
                         </div>
 
-                        <!-- --- <div class="hidden sm:flex sm:items-center sm:ml-6"> --- -->
-
                         <div v-if="$page.props.auth.user" class="hidden sm:flex sm:items-center sm:ml-6">
+
 
                             <!-- --- Settings Dropdown --- -->
 
@@ -93,11 +104,11 @@ const showingNavigationDropdown = ref(false);
                             </div>
                         </div>
 
-
                         <div v-else class="hidden sm:flex gap-4 items-center sm:ml-6">
                             <Link :href="route('login')" class="btn btn-secondary">Login</Link>
                             <Link :href="route('register')" class="btn btn-primary">Register</Link>
                         </div>
+
 
                         <!-- --- Hamburger -- -->
 
@@ -121,23 +132,20 @@ const showingNavigationDropdown = ref(false);
                     </div>
                 </div>
 
+
                 <!-- --- Responsive Navigation Menu --- -->
 
                 <div :class="{ block: showingNavigationDropdown, hidden: !showingNavigationDropdown }" class="sm:hidden">
                     <div class="pt-2 pb-3 space-y-1">
 
-                        <!-- --- <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                            Dashboard --- -->
-
-                        <ResponsiveNavLink :href="route('Teacherhome')" :active="route().current('Teacherhome')">
-                            TeacherHome
+                        <ResponsiveNavLink :href="route('teacher.home')" :active="route().current('teacher.home')">
+                            teacher-home
                         </ResponsiveNavLink>
 
                     </div>
 
-                    <!-- --- Responsive Settings Options --- -->
 
-                    <!-- --- <div class="pt-4 pb-1 border-t border-gray-200"> --- -->
+                    <!-- --- Responsive Settings Options --- -->
 
                     <div v-if="$page.props.auth.user" class="pt-4 pb-1 border-t border-gray-200">
                         <div class="px-4">
@@ -157,6 +165,7 @@ const showingNavigationDropdown = ref(false);
                 </div>
             </nav>
 
+
             <!-- --- Page Heading --- -->
 
             <header class="bg-white shadow" v-if="$slots.header">
@@ -164,6 +173,7 @@ const showingNavigationDropdown = ref(false);
                     <slot name="header" />
                 </div>
             </header>
+
 
             <!-- --- Page Content --- -->
 
@@ -174,6 +184,23 @@ const showingNavigationDropdown = ref(false);
                 <slot />
             </main>
         </div>
+
+
+        <!-- Footer Section -->
+
+        <footer class="bg-black text-white py-4">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <p>&copy; 2023 &nbsp; TE Institutions </p>
+                    </div>
+                    <div>
+                        <a href="#">Privacy Policy</a> |
+                        <a href="#">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
 
     </div>
 </template>

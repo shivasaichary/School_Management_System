@@ -6,10 +6,15 @@ import InputLabel from '@/Components/InputLabel.vue'
 import PrimaryButton from '@/Components/PrimaryButton.vue'
 import TextInput from '@/Components/TextInput.vue'
 const form = useForm({
-    name: ''
+    class_name: '',
+    subject:'',
+    section:'',
+    teacher_name:'',
+    starting_time:'',
+    ending_time:'',
 })
 const submit = () => {
-    form.post(route('teacher.classes.store'))
+    form.patch(route('teacher.classes.create'))
 }
 </script>
 
@@ -29,9 +34,39 @@ const submit = () => {
                         <div class="p-6 text-gray-900 overflow-x-scroll">
                             <form @submit.prevent="submit" class="flex flex-col gap-4">
                                 <div class="form-group">
-                                    <InputLabel for="name" value="Class Name" />
-                                    <TextInput id="name" type="text" v-model="form.name" :disabled="form.processing" />
-                                    <InputError :message="form.errors.name" />
+                                    <InputLabel for="class_name" value="Class Name" />
+                                    <TextInput id="class_name" type="text" v-model="form.class_name" :disabled="form.processing" />
+                                    <InputError :message="form.errors.class_name" />
+                                </div>
+                                <div class="form-group">
+                                    <InputLabel for="subject" value="Subject" />
+                                    <TextInput id="subject" type="text" v-model="form.subject"
+                                        :disabled="form.processing" />
+                                    <InputError :message="form.errors.subject" />
+                                </div>
+                                <div class="form-group">
+                                    <InputLabel for="section" value="Section" />
+                                    <TextInput id="section" type="text" v-model="form.section"
+                                        :disabled="form.processing" />
+                                    <InputError :message="form.errors.section" />
+                                </div>
+                                <div class="form-group">
+                                    <InputLabel for="teacher_name" value="Teacher Name" />
+                                    <TextInput id="teacher_name" type="text" v-model="form.teacher_name"
+                                        :disabled="form.processing" />
+                                    <InputError :message="form.errors.teacher_name" />
+                                </div>
+                                <div class="form-group">
+                                    <InputLabel for="starting_time" value="Starting Time" />
+                                    <TextInput id="starting_time" type="text" v-model="form.starting_time"
+                                        :disabled="form.processing" />
+                                    <InputError :message="form.errors.starting_time" />
+                                </div>
+                                <div class="form-group">
+                                    <InputLabel for="ending_time" value="Ending Time" />
+                                    <TextInput id="ending_time" type="text" v-model="form.ending_time"
+                                        :disabled="form.processing" />
+                                    <InputError :message="form.errors.ending_time" />
                                 </div>
 
                                 <div>

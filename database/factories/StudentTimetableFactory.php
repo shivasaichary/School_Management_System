@@ -26,7 +26,7 @@ class StudentTimetableFactory extends Factory
 
         return [
             'student_code' =>'TES-ID'. $faker->numberBetween(1, 200),
-            'day_of_week' => $faker->randomElement(['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']),
+            'day_of_week' => $faker->randomElement(['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday','saturday']),
             'start_time' => $faker->time('H:i'),
             'end_time' => $faker->time('H:i'),
             'subject_name' => $faker->sentence(3),

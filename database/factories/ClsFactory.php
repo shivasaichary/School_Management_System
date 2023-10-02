@@ -69,11 +69,12 @@ class ClsFactory extends Factory
         ]);
 
         return [
-            'name' => $classes->random(),
+            'class_name' => $classes->random(),
             'section' => fake()->randomElement(['A', 'B', 'C', 'D']),
             'subject' => $subjects->random(1),
             'starting_time' => $starting_time->random(),
             'ending_time' => $ending_time->random(),
+            'teacher_name'=>'teacher',
         ];
     }
 }

@@ -16,16 +16,41 @@ defineProps({
 })
 
 const form = useForm({
-    name: '',
-    email: '',
+    teacher_name: '',
     subject: '',
+    age: '',
+    date_of_birth: '',
+    gender: '',
+    phone_number: '',
+    email: '',
     address: '',
+
 })
 
 const submit = () => {
     form.post(route('admin.teachers.store'))
 }
 
+const genderOptions = [
+    { id: 'male', name: 'Male' },
+    { id: 'female', name: 'Female' },
+    { id: 'other', name: 'Other' }
+]
+
+</script>
+
+<script>
+import VueDatePicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css'
+
+export default {
+    components: { VueDatePicker },
+    data() {
+        return {
+            date_of_birth: null,
+        };
+    }
+}
 </script>
 
 <template>
@@ -46,15 +71,10 @@ const submit = () => {
 
 
                                 <div class="form-group">
-                                    <InputLabel for="name" value="Teacher Name" />
-                                    <TextInput id="name" type="text" v-model="form.name" :disabled="form.processing" />
-                                    <InputError :message="form.errors.name" />
-                                </div>
-
-                                <div class="form-group">
-                                    <InputLabel for="email" value="Teacher Email" />
-                                    <TextInput id="email" type="email" v-model="form.email" :disabled="form.processing" />
-                                    <InputError :message="form.errors.email" />
+                                    <InputLabel for="teacher_name" value="Teacher Name" />
+                                    <TextInput id="teacher_name" type="text" v-model="form.teacher_name"
+                                        :disabled="form.processing" />
+                                    <InputError :message="form.errors.teacher_name" />
                                 </div>
 
                                 <div class="form-group">
@@ -62,6 +82,42 @@ const submit = () => {
                                     <TextInput id="subject" type="text" v-model="form.subject"
                                         :disabled="form.processing" />
                                     <InputError :message="form.errors.subject" />
+                                </div>
+
+                                <div class="form-group">
+                                    <InputLabel for="age" value="Age" />
+                                    <TextInput id="age" type="text" v-model="form.age" :disabled="form.processing" />
+                                    <InputError :message="form.errors.age" />
+                                </div>
+
+                                <div class="form-group">
+                                    <InputLabel for="date_of_birth" value="Date of Birth" />
+                                    <VueDatePicker id="date_of_birth" v-model="form.date_of_birth" auto-apply :close-on-auto-apply="false"
+                                        :enable-time-picker="false" placeholder="Select Date" ></VueDatePicker>
+                                    <!-- <TextInput id="date_of_birth" type="text" v-model="form.date_of_birth"
+                                        :disabled="form.processing" /> -->
+                                    <InputError :message="form.errors.date_of_birth" />
+                                </div>
+
+                                <div class="form-group">
+                                    <InputLabel for="gender" value="Gender" />
+                                    <!-- {{ genderOptions }} -->
+                                    <SelectInput id="gender" v-model="form.gender" :options="genderOptions"
+                                        :disabled="form.processing" :optionValue="`name`" :optionLabel="`name`" />
+                                    <InputError :message="form.errors.gender" />
+                                </div>
+
+                                <div class="form-group">
+                                    <InputLabel for="phone_number" value="Phone number" />
+                                    <TextInput id="phone_number" type="text" v-model="form.phone_number"
+                                        :disabled="form.processing" />
+                                    <InputError :message="form.errors.phone_number" />
+                                </div>
+
+                                <div class="form-group">
+                                    <InputLabel for="email" value="Email" />
+                                    <TextInput id="email" type="email" v-model="form.email" :disabled="form.processing" />
+                                    <InputError :message="form.errors.email" />
                                 </div>
 
                                 <div class="form-group">

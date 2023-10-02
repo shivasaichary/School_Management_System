@@ -2,23 +2,31 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
-use App\Enums\RoleName;
 use App\Models\Role;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use App\Enums\RoleName;
+use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
+
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+    use HasRoles;
+
+    /* protected function getDefaultGuardName() : string {
+        return 'web';
+    } */
 
     /**
      * The attributes that are mass assignable.
@@ -29,6 +37,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        "user_type"
     ];
 
     /**
@@ -51,10 +60,10 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function roles(): BelongsToMany
-    {
-        return $this->belongsToMany(Role::class);
-    }
+    // public function roles(): BelongsToMany
+    // {
+    //     return $this->belongsToMany(Role::class);
+    // }
 
     public function isAdmin(): bool
     {
@@ -76,23 +85,23 @@ class User extends Authenticatable
         return $this->hasRole(RoleName::PARENT);
     }
 
-    public function hasRole(RoleName $role): bool
-    {
-        return $this->roles()->where('name', $role->value)->exists();
-    }
+    // public function hasRole(RoleName $role): bool
+    // {
+    //     return $this->roles()->where('name', $role->value)->exists();
+    // }
 
-    public function permissions(): array
-    {
-        return $this->roles()->with('permissions')->get()
-            ->map(function ($role) {
-                return $role->permissions->pluck('name');
-            })->flatten()->values()->unique()->toArray();
-    }
+    // public function permissions(): array
+    // {
+    //     return $this->roles()->with('permissions')->get()
+    //         ->map(function ($role) {
+    //             return $role->permissions->pluck('name');
+    //         })->flatten()->values()->unique()->toArray();
+    // }
 
-    public function hasPermission(string $permission): bool
-    {
-        return in_array($permission, $this->permissions(), true);
-    }
+    // public function hasPermission(string $permission): bool
+    // {
+    //     return in_array($permission, $this->permissions(), true);
+    // }
 
     public function school(): HasOne
     {

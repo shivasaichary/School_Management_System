@@ -13,7 +13,7 @@ class School extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['city_id',  'name', 'address'];
+    protected $fillable = ['principal_code', 'principal_name', 'city_id',  'school_name', 'address', 'email', 'school_code'];
 
     public function principal(): BelongsTo
     {

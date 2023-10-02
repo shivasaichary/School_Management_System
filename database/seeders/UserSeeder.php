@@ -25,11 +25,14 @@ class UserSeeder extends Seeder
 
     public function createAdminUser()
     {
-        User::create([
+        $user = User::create([
             'name'     => 'Admin',
             'email'    => 'admin@admin.com',
             'password' => bcrypt('password'),
-        ])->roles()->sync(Role::where('name', RoleName::ADMIN->value)->first());
+        ]);
+
+        $admin = Role::findByName('Admin','web');
+        $user->assignRole($admin);
     }
 
     public function createTeacherUser()
@@ -46,13 +49,16 @@ class UserSeeder extends Seeder
         //     'address'=>'Address SJV14',
         // ]);
 
-        $teacher = User::create([
+        $user = User::create([
             'name'     => 'teacher',
             'email'    => 'teacher@school.com',
             'password' => bcrypt('password'),
         ]);
 
-        $teacher->roles()->sync(Role::where('name', RoleName::TEACHER->value)->first());
+        $teacher = Role::findByName('Teacher','web');
+        $user->assignRole($teacher);
+
+        // $teacher->roles()->sync(Role::where('name', RoleName::TEACHER->value)->first());
 
         // $teacher->school()->create([
         //     'city_id'  => City::where('name', 'karimnagar')->value('id'),
@@ -62,21 +68,27 @@ class UserSeeder extends Seeder
 
     }
 
-    public function createStudentUser()
+     public function createStudentUser()
     {
-        User::create([
+        $user = User::create([
             'name'     => 'Student',
             'email'    => 'student@student.com',
             'password' => bcrypt('password'),
-        ])->roles()->sync(Role::where('name', RoleName::STUDENT->value)->first());
+        ]);
+
+        $student = Role::findByName('Student','web');
+        $user->assignRole($student);
     }
 
     public function createParentUser()
     {
-        User::create([
+        $user = User::create([
             'name'     => 'Parent',
             'email'    => 'parent@parent.com',
             'password' => bcrypt('password'),
-        ])->roles()->sync(Role::where('name', RoleName::PARENT->value)->first());
+        ]);
+
+        $parent = Role::findByName('Parent','web');
+        $user->assignRole($parent);
     }
 }

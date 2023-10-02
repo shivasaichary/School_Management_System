@@ -16,14 +16,16 @@ return new class extends Migration
             $table->id();
             $table->string('teacher_code');
             $table->string('teacher_name')->nullable();
-            $table->string('email')->unique();
-            $table->string('address');
+            $table->string('email');
+            $table->string('address')->nullable();
             $table->string('phone_number')->nullable();
             $table->string('subject');
-            $table->integer('age');
+            $table->integer('age')->nullable();
             $table->date('date_of_birth')->nullable();
             $table->string('gender')->nullable();
             $table->timestamps();
+
+            // $table->foreignId('user_id')->default(2)->constrained();
         });
     }
 

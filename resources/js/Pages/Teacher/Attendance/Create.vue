@@ -38,7 +38,13 @@ const submit = () => {
                         <div class="p-6 text-gray-900 overflow-x-scroll">
                             <form @submit.prevent="submit" class="flex flex-col gap-4">
                                 <div class="form-group">
-                                    <InputLabel for="student_code" value="Student" />
+                                    <InputLabel for="student_name" value="Student Name" />
+                                    <SelectInput id="student_name" v-model="form.student_name"
+                                        :disabled="form.processing" />
+                                    <InputError :message="form.errors.student_name" />
+                                </div>
+                                <div class="form-group">
+                                    <InputLabel for="student_code" value="Student Code" />
                                     <SelectInput id="student_code" v-model="form.student_code" :options="students"
                                         :disabled="form.processing" />
                                     <InputError :message="form.errors.student_code" />

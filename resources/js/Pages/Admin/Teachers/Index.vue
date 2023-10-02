@@ -7,7 +7,9 @@ defineProps({
     teachers: {
         type: Array
     }
-})
+});
+
+
 </script>
 
 <template>
@@ -98,12 +100,13 @@ defineProps({
                                     </td>
 
                                     <td>
-                                        <Link :href="route('admin.teachers.update', teacher)" class="btn btn-secondary">
+                                        <Link :href="route('admin.teachers.delete', teacher)" class="btn btn-secondary">
                                         delete
                                         </Link>
                                     </td>
 
                                 </tr>
+
                             </tbody>
                         </table>
                     </div>

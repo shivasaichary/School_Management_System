@@ -2,7 +2,7 @@
 
 // import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import TeacherAuthenticatedLayout from '@/Layouts/TeacherAuthenticatedLayout.vue';
-import { Head } from '@inertiajs/vue3';
+import { Head, useForm } from '@inertiajs/vue3';
 import { Link } from '@inertiajs/vue3';
 
 defineProps({
@@ -14,6 +14,15 @@ defineProps({
     },
 });
 
+const form =useForm({
+
+})
+
+const deletecls = (cls) => {
+    form.delete(route('teacher.classes.delete', cls))
+}
+
+
 </script>
 
 <template>
@@ -22,7 +31,7 @@ defineProps({
         <Head title="Classes" />
 
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Classes</h2>
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Class Timetables</h2>
         </template>
 
         <div class="py-12">
@@ -30,6 +39,7 @@ defineProps({
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
 
                     <div class="p-6">
+                        {{ route('teacher.classes.create') }}
                         <Link class="btn btn-primary" v-if="('cls.create')" :href="route('teacher.classes.create')">
                         Add New Class
                         </Link>
@@ -50,9 +60,11 @@ defineProps({
 
                                     <th>Subject</th>
 
-                                    <th>From</th>
+                                    <th>Teacher Name</th>
 
-                                    <th>To</th>
+                                    <th>Starting time</th>
+
+                                    <th>Ending time</th>
 
                                     <th></th>
 
@@ -68,11 +80,13 @@ defineProps({
 
                                     <td>{{ cls.id }}</td>
 
-                                    <td>{{ cls.name }}</td>
+                                    <td>{{ cls.class_name }}</td>
 
                                     <td>{{ cls.section }}</td>
 
                                     <td>{{ cls.subject }}</td>
+
+                                    <td>{{ cls.teacher_name }}</td>
 
                                     <td>{{ cls.starting_time }}</td>
 
@@ -85,8 +99,16 @@ defineProps({
                                     </td>
 
                                     <td>
-                                        <Link :href="route('teacher.classes.delete', cls)" class="btn btn-secondary">
-                                        Delete</Link>
+                                        <!-- <Link :href="route('teacher.classes.delete', cls)" class="btn btn-secondary">
+                                        Delete</Link> -->
+
+
+                                        <form @submit.prevent="deletecls(cls)" method="post">
+
+                                            <button type="submit" class="btn btn-secondary">
+                                                Delete
+                                            </button>
+                                        </form>
                                     </td>
 
                                 </tr>

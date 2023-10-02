@@ -14,13 +14,16 @@ return new class extends Migration
     {
         Schema::create('cls', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(School::class)->constrained()->cascadeOnDelete();
-            $table->string('name');
-            $table->string('section');
-            $table->string('subject');
-            $table->time('starting_time');
-            $table->time('ending_time');
+            $table->string('class_name')->nullable();
+            $table->string('section')->nullable();
+            $table->string('subject')->nullable();
+            $table->time('starting_time')->nullable();
+            $table->time('ending_time')->nullable();
+            $table->string('teacher_name')->nullable();
             $table->timestamps();
+
+            $table->foreignIdFor(School::class)->nullable()->constrained()->cascadeOnDelete();
+
         });
     }
 

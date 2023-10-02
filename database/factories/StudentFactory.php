@@ -17,14 +17,14 @@ class StudentFactory extends Factory
     public function definition(): array
     {
         return [
-            // 'id'=> 'TESI'.fake()->numberBetween(001,500),
-            'name'  => fake()->words(3, true),
+            'student_name'  => 'student',
             'age' => rand(3, 17),
             'address' => fake()->address(15,true),
             'phone_number' => fake()->phoneNumber(12),
-            'email'=>fake()->email(),
+            'email'=>'student@student.com',
             'gender' =>fake()->randomElement(['Male','Female']),
-            'student_code'=> 'TES-ID'. fake()->numberBetween(),
+            'student_code'=> 'TES-ID'.rand(10,700),
+            'user_id'=>3,
         ];
     }
 }

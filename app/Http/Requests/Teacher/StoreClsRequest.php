@@ -9,22 +9,20 @@ class StoreClsRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        return Gate::allows('cls.create');
+        // return Gate::allows('cls.create');
+        return true;
     }
 
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
+            'class_name' => ['required', 'string', 'max:255', 'in:First,Second,Third,FOurth,Fifth,Sixth,Seventh,Eighth,Ninth,Tenth'],
+            'subject' => ['required', 'string', 'max:255'],
+            'starting_time' => ['required', 'date_format:H:i'],
+            'ending_time' => ['required', 'date_format:H:i'],
+            'teacher_name'=>['required','string','max:255'],
+            'section' => ['required', 'string', 'in:A,B,C,D'],
         ];
     }
 
-    public function messages(): array
-    {
-        return [
-            'name.required' => 'The class name is required.',
-            'name.string' => 'The class name must be a string.',
-            'name.max' => 'The class name must not exceed 255 characters.',
-        ];
-    }
 }

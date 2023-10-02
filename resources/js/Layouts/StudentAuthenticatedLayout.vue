@@ -1,4 +1,4 @@
-<!-- <script setup>
+<script setup>
 
 import { ref } from 'vue';
 import { Link } from '@inertiajs/vue3';
@@ -14,70 +14,56 @@ const showingNavigationDropdown = ref(false);
 
 <template>
     <div>
-
-        <h1> STUDENT </h1>
-
         <div class="min-h-screen bg-gray-50">
             <nav class="bg-white border-b border-gray-100">
 
-                 ##Primary Navigation Menu
+
+                <!-- ##Primary Navigation Menu -->
 
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">
 
                         <div class="flex">
 
-                            ## Logo
+
+                            <!--## Logo-->
 
                             <div class="shrink-0 flex items-center">
 
-                                --- <Link :href="route('dashboard')"> ---
-
-                                <Link :href="route('home')">
+                                <Link :href="route('student.home')">
                                 <ApplicationLogo class="block h-9 w-auto fill-current text-gray-800" />
                                 </Link>
 
                             </div>
 
-                            --- Navigation Links ---
+
+                            <!--- Navigation Links --->
 
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
 
-
-                                <NavLink v-if="('teacher.viewAny')" :href="route('admin.teacher.index')"
-                                    :active="route().current('admin.teacher.index')">
-                                    Teachers
+                                <NavLink v-if="('student.viewAny')" :href="route('student.attendance.index')"
+                                    :active="route().current('student.attendance.index')">
+                                    My Attendance
                                 </NavLink>
 
-                                --- can ---
-
-                                <NavLink v-if="('teacher.viewAny')" :href="route('admin.teacher.index')"
-                                    :active="route().current('admin.teacher.index')">
-                                    Subjects
+                                <NavLink v-if="('student.viewAny')" :href="route('student.classtimetables.index')"
+                                    :active="route().current('student.classtimetables.index')">
+                                    My Class Timetables
                                 </NavLink>
 
-                                <NavLink v-if="('teacher.viewAny')" :href="route('admin.teacher.index')"
-                                    :active="route().current('admin.teacher.index')">
-                                    Timetables
+                                <NavLink v-if="('student.viewAny')" :href="route('student.result.index')"
+                                    :active="route().current('student.result.index')">
+                                    My Result
                                 </NavLink>
-
-
-
-                                <NavLink v-if="can('student.viewAny') && can('cls.viewAny')"
-                                    :href="route('teacher.section')" :active="route().current('teacher.section')">School
-                                    Section
-                                </NavLink>
-
 
                             </div>
 
                         </div>
 
-                        --- <div class="hidden sm:flex sm:items-center sm:ml-6"> ---
-
                         <div v-if="$page.props.auth.user" class="hidden sm:flex sm:items-center sm:ml-6">
 
-                            --- Settings Dropdown ---
+
+                            <!--- Settings Dropdown --->
 
                             <div class="ml-3 relative">
                                 <Dropdown align="right" width="48">
@@ -107,13 +93,13 @@ const showingNavigationDropdown = ref(false);
                             </div>
                         </div>
 
-
                         <div v-else class="hidden sm:flex gap-4 items-center sm:ml-6">
                             <Link :href="route('login')" class="btn btn-secondary">Login</Link>
                             <Link :href="route('register')" class="btn btn-primary">Register</Link>
                         </div>
 
-                        --- Hamburger --
+
+                        <!--- Hamburger -->
 
                         <div class="-mr-2 flex items-center sm:hidden">
                             <button @click="showingNavigationDropdown = !showingNavigationDropdown"
@@ -136,24 +122,19 @@ const showingNavigationDropdown = ref(false);
                 </div>
 
 
-
-                --- Responsive Navigation Menu ---
+                <!--- Responsive Navigation Menu --->
 
                 <div :class="{ block: showingNavigationDropdown, hidden: !showingNavigationDropdown }" class="sm:hidden">
                     <div class="pt-2 pb-3 space-y-1">
 
-                        --- <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                            Dashboard ---
-
-                        <ResponsiveNavLink :href="route('home')" :active="route().current('home')">
-                            Home
+                        <ResponsiveNavLink :href="route('student.home')" :active="route().current('student.home')">
+                            student.Home
                         </ResponsiveNavLink>
 
                     </div>
 
-                    --- Responsive Settings Options ---
 
-                    --- <div class="pt-4 pb-1 border-t border-gray-200"> ---
+                    <!--- Responsive Settings Options --->
 
                     <div v-if="$page.props.auth.user" class="pt-4 pb-1 border-t border-gray-200">
                         <div class="px-4">
@@ -173,7 +154,8 @@ const showingNavigationDropdown = ref(false);
                 </div>
             </nav>
 
-            --- Page Heading ---
+
+            <!--- Page Heading --->
 
             <header class="bg-white shadow" v-if="$slots.header">
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
@@ -181,7 +163,8 @@ const showingNavigationDropdown = ref(false);
                 </div>
             </header>
 
-            --- Page Content ---
+
+            <!--- Page Content --->
 
             <main>
                 <div v-if="$page.props.status" class="max-w-7xl mx-auto pt-6 px-4 sm:px-6 lg:px-8">
@@ -191,5 +174,22 @@ const showingNavigationDropdown = ref(false);
             </main>
         </div>
 
+
+        <!-- Footer Section -->
+
+        <footer class="bg-black text-white py-4">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <p>&copy; 2023 &nbsp; TE Institutions </p>
+                    </div>
+                    <div>
+                        <a href="#">Privacy Policy</a> |
+                        <a href="#">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
     </div>
-</template> -->
+</template>

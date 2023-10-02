@@ -20,10 +20,11 @@ class SchoolFactory extends Factory
         $cities = City::pluck('id');
         return [
             'city_id' => $cities->random(),
-            'principal_name'    => fake()->name(),
+            'principal_name' => fake()->name(),
             'school_name' => fake()->name(),
             'address' => fake()->address(),
             'school_code' => 'TES'.fake()->unique()->randomNumber(3),
+            'email'=> fake()->safeEmail(),
             // $schoolCode = 'TES' . $faker->unique()->randomNumber(3);
         ];
     }

@@ -9,13 +9,19 @@ class UpdateClsRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        return Gate::allows('cls.update');
+        // return Gate::allows('cls.update');
+        return true;
     }
 
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
+            'class_name' => ['required', 'string', 'max:255'],
+            'subject' => ['required', 'string', 'max:255'],
+            'starting_time' => ['required', 'date_format:H:i'],
+            'ending_time' => ['required', 'date_format:H:i'],
+            'teacher_name'=>['required','string','max:255'],
+            'section' => ['required', 'string', 'in:A,B,C,D'],
         ];
     }
 }

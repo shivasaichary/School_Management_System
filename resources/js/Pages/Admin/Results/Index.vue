@@ -38,7 +38,7 @@ defineProps({
                                     <td>{{ result.id }}</td>
                                     <td>{{ result.student_code }}</td>
                                     <td>{{ result.student_name }}</td>
-                                    <td>{{ result.subject_id }}</td>
+                                    <td>{{ result.subject_code }}</td>
                                     <td>{{ result.subject_name }}</td>
                                     <td>{{ result.marks_obtained }}</td>
                                     <td>{{ result.date_of_exam }}</td>

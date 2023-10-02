@@ -15,10 +15,21 @@ const props = defineProps({
 })
 
 const form = useForm({
-    teacher_name: props.teacher.name,
+    teacher_name: props.teacher.teacher_name,
     email: props.teacher.email,
     subject: props.teacher.subject,
+    phone_number: props.teacher.phone_number,
+    age: props.teacher.age,
+    date_of_birth: props.teacher.date_of_birth,
+    gender: props.teacher.gender,
+    address: props.teacher.address,
 })
+
+const genderOptions = [
+    { id: 'male', name: 'Male' },
+    { id: 'female', name: 'Female' },
+    { id: 'other', name: 'Other' }
+]
 
 const submit = () => {
     form.patch(route('admin.teachers.update', props.teacher.id), {
@@ -30,16 +41,30 @@ const submit = () => {
 
 </script>
 
+<script>
+
+import VueDatePicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css'
+
+export default {
+    components: { VueDatePicker },
+    data() {
+        return {
+            date: null,
+        };
+    }
+}
+
+</script>
 
 <template>
-
     <AuthenticatedLayout>
 
-        <Head :title="'Edit ' + teacher.name" />
+        <Head :title="'Edit ' + teacher.teacher_name" />
 
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ 'Edit ' + teacher.name }}
+                {{ 'Edit ' + teacher.teacher_name }}
             </h2>
         </template>
 
@@ -76,6 +101,36 @@ const submit = () => {
                                 </div>
 
                                 <div class="form-group">
+                                    <InputLabel for="phone_number" value="Phone number" />
+                                    <TextInput id="phone_number" type="text" v-model="form.phone_number"
+                                        :disabled="form.processing" />
+                                    <InputError :message="form.errors.phone_number" />
+                                </div>
+
+                                <div class="form-group">
+                                    <InputLabel for="age" value="Age" />
+                                    <TextInput id="age" type="text" v-model="form.age" :disabled="form.processing" />
+                                    <InputError :message="form.errors.age" />
+                                </div>
+
+                                <div class="form-group">
+                                    <InputLabel for="date_of_birth" value="Date of Birth" />
+                                    <VueDatePicker v-model="form.date_of_birth" auto-apply :close-on-auto-apply="false"
+                                        :enable-time-picker="false" placeholder="Select Date"></VueDatePicker>
+                                    <!-- <TextInput id="date_of_birth" type="text" v-model="form.date_of_birth"
+                                        :disabled="form.processing" /> -->
+                                    <InputError :message="form.errors.date_of_birth" />
+                                </div>
+
+                                <div class="form-group">
+                                    <InputLabel for="gender" value="Gender" />
+                                    <!-- {{ genderOptions }} -->
+                                    <SelectInput id="gender" v-model="form.gender" :options="genderOptions"
+                                        :disabled="form.processing" :optionValue="`name`" :optionLabel="`name`" />
+                                    <InputError :message="form.errors.gender" />
+                                </div>
+
+                                <div class="form-group">
                                     <InputLabel for="address" value="Address" />
                                     <TextareaInput id="address" v-model="form.address" class="resize-none" rows="3"
                                         :disabled="form.processing" />
@@ -83,7 +138,7 @@ const submit = () => {
                                 </div>
 
                                 <div>
-                                    <PrimaryButton :processing="form.processing">Update school</PrimaryButton>
+                                    <PrimaryButton :processing="form.processing">Update Teacher</PrimaryButton>
                                 </div>
 
                             </form>
@@ -99,6 +154,5 @@ const submit = () => {
         </div>
 
     </AuthenticatedLayout>
-
 </template>
 

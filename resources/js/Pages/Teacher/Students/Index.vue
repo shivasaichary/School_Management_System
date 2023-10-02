@@ -16,7 +16,7 @@ defineProps({
         <Head title="Students" />
 
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Students</h2>
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Students Data</h2>
         </template>
 
         <div class="py-12">
@@ -38,6 +38,8 @@ defineProps({
                                     <th>ID</th>
 
                                     <th>Student Name</th>
+
+                                    <th>Student Code</th>
 
                                     <th>Age</th>
 
@@ -65,6 +67,9 @@ defineProps({
 
                                     <td>{{ student.student_name }}</td>
 
+                                    <td>{{ student.student_code }}</td>
+
+
                                     <td>{{ student.age }}</td>
 
                                     <td>{{ student.gender }}</td>
@@ -86,7 +91,7 @@ defineProps({
                                     </td>
 
                                     <td>
-                                        <Link :href="route('teacher.students.update', student)" class="btn btn-secondary">
+                                        <Link :href="route('teacher.students.delete', student)" class="btn btn-secondary">
                                         Delete
                                         </Link>
                                     </td>

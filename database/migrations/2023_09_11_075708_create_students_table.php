@@ -14,8 +14,7 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Cls::class)->constrained()->cascadeOnDelete();
-            $table->string('name');
+            $table->string('student_name');
             $table->string('student_code');
             $table->unsignedInteger('age');
             $table->string('gender');
@@ -23,6 +22,10 @@ return new class extends Migration
             $table->string('email');
             $table->string('address');
             $table->timestamps();
+
+            $table->foreignId('user_id')->nullable()->constrained();
+            $table->foreignIdFor(Cls::class)->nullable()->constrained()->cascadeOnDelete();
+
         });
     }
 
