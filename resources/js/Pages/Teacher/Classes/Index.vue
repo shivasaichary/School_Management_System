@@ -18,7 +18,7 @@ const form =useForm({
 
 })
 
-const deletecls = (cls) => {
+const deleteCls = (cls) => {    
     form.delete(route('teacher.classes.delete', cls))
 }
 
@@ -31,21 +31,23 @@ const deletecls = (cls) => {
         <Head title="Classes" />
 
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Class Timetables</h2>
+            <h2 class="font-semibold text-xl text-green-600 leading-tight">Class Timetables</h2>
         </template>
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="bg-black overflow-hidden shadow-2xl xl:rounded-3xl">
 
                     <div class="p-6">
-                        {{ route('teacher.classes.create') }}
+
+                        <!-- {{ route('teacher.classes.create') }} -->
+
                         <Link class="btn btn-primary" v-if="('cls.create')" :href="route('teacher.classes.create')">
                         Add New Class
                         </Link>
                     </div>
 
-                    <div class="p-6 text-gray-900 overflow-x-scroll">
+                    <div class="p-6 text-gray-900 bg-blue-100 overflow-x-scroll">
 
                         <table class="table">
 
@@ -103,7 +105,7 @@ const deletecls = (cls) => {
                                         Delete</Link> -->
 
 
-                                        <form @submit.prevent="deletecls(cls)" method="post">
+                                        <form @submit.prevent="deleteCls(cls)" method="post">
 
                                             <button type="submit" class="btn btn-secondary">
                                                 Delete

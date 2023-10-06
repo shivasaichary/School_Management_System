@@ -50,12 +50,12 @@ const submit = () => {
                     <div class="p-6 text-gray-900 overflow-x-scroll">
                         <div class="p-6 text-gray-900 overflow-x-scroll">
                             <form @submit.prevent="submit" class="flex flex-col gap-4">
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <InputLabel for="class_id" value="Class" />
                                     <TextInput id="class_id" type="text" v-model="form.class_id"
                                         :disabled="form.processing" />
                                     <InputError :message="form.errors.class_id" />
-                                </div>
+                                </div> -->
 
                                 <div class="form-group">
                                     <InputLabel for="parent_name" value="parent Name" />

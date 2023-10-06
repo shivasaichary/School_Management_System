@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('phone_number');
             $table->string('email');
             $table->string('address');
+            $table->string('stripe_customer_id')->nullable();
             $table->timestamps();
 
             $table->foreignId('user_id')->nullable()->constrained();

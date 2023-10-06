@@ -70,6 +70,7 @@ class TeacherFactory extends Factory
             'teacher_code' => 'TET-ID'. $this->faker->unique()->randomNumber(3),
             'teacher_name' => 'teacher',
             'email' => 'teacher@school.com',
+            'designation'=>'B.Ed',
             'address' => $this->faker->word(),
             'phone_number' => $this->faker->phoneNumber,
             'subject'=>$subjects->random(1),

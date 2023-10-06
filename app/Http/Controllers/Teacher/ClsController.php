@@ -64,7 +64,7 @@ class ClsController extends Controller
             ->withStatus('student classes created successfully.');
     }
 
-    public function edit(Cls $cls): Response
+    public function edit($cls): Response
     {
         $user = Auth()->user();
 
@@ -72,8 +72,10 @@ class ClsController extends Controller
             return response('Unauthorize');
         }
 
+        $clas = Cls::find($cls);
+
         return Inertia::render('Teacher/Classes/Edit', [
-            'cls' => $cls,
+            'cls' => $clas,
         ]);
     }
 
@@ -92,7 +94,7 @@ class ClsController extends Controller
         return redirect()->route('teacher.classes.index')->withStatus('student class updated successfully.');
     }
 
-    public function destroy(Cls $cls):RedirectResponse
+    public function destroy($cls): RedirectResponse
     {
         $user = Auth()->user();
 
@@ -100,7 +102,9 @@ class ClsController extends Controller
             return response('Unauthorize');
         }
 
-        $cls->delete();
+        $clas = Cls::find($cls);
+
+        $clas->delete();
 
         return redirect()->route('teacher.classes.index')
             ->withStatus('student Class deleted successfully.');

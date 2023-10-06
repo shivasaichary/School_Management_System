@@ -24,6 +24,7 @@ class StudentFactory extends Factory
             'email'=>'student@student.com',
             'gender' =>fake()->randomElement(['Male','Female']),
             'student_code'=> 'TES-ID'.rand(10,700),
+            'stripe_customer_id'=>null,
             'user_id'=>3,
         ];
     }

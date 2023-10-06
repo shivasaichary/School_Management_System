@@ -30,6 +30,13 @@ class AdminTeacherController extends Controller
         ]);
     }
 
+    public function show(Teacher $teacher): Response
+    {
+        return Inertia::render('Admin/Teachers/Index', [
+            'teacher' => $teacher,
+        ]);
+    }
+
     public function create(): Response
     {
 
@@ -51,15 +58,15 @@ class AdminTeacherController extends Controller
         }
 
         Teacher::create([
-            'teacher_code'=>'TET-ID'.rand(1,999),
-            'teacher_name'=>$request['teacher_name'],
-            'email'=>$request['email'],
-            'address'=>$request['address'],
-            'phone_number'=>$request['phone_number'],
-            'subject'=>$request['subject'],
-            'age'=>$request['age'],
-            'date_of_birth'=>$request['date_of_birth'],
-            'gender'=>$request['gender']
+            'teacher_code' => 'TET-ID' . rand(1, 999),
+            'teacher_name' => $request['teacher_name'],
+            'email' => $request['email'],
+            'address' => $request['address'],
+            'phone_number' => $request['phone_number'],
+            'subject' => $request['subject'],
+            'age' => $request['age'],
+            'date_of_birth' => $request['date_of_birth'],
+            'gender' => $request['gender']
         ]);
 
         return redirect()->route('admin.teachers.index')->with('status', 'Teacher created successfully.');
@@ -81,7 +88,7 @@ class AdminTeacherController extends Controller
 
     public function update(UpdateTeacherRequest $request, Teacher $teacher): RedirectResponse
     {
-        $user=Auth()->user();
+        $user = Auth()->user();
 
         if (!$user->hasPermissionTo('update_teacher', 'web')) {
             return response('Unauthorized');
@@ -105,12 +112,5 @@ class AdminTeacherController extends Controller
         $teacher->delete();
 
         return redirect()->route('admin.teachers.index')->with('status', 'Teacher deleted successfully.');
-    }
-
-    public function show(Teacher $teacher): Response
-    {
-        return Inertia::render('Admin/Teachers/Index', [
-            'teacher' => $teacher,
-        ]);
     }
 }

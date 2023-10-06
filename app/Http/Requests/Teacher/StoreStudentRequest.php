@@ -23,6 +23,8 @@ class StoreStudentRequest extends FormRequest
             'phone_number' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'address' => ['required', 'string', 'max:255'],
+            // 'stripe_customer_id' => ['required', 'string', 'max:255'],
+
         ];
     }
 

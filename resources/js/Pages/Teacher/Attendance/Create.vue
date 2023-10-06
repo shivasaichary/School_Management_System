@@ -4,16 +4,19 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import SelectInput from '@/Components/SelectInput.vue';
+import TextInput from '@/Components/TextInput.vue';
 import { Head } from '@inertiajs/vue3';
 import { useForm } from '@inertiajs/vue3';
 
-defineProps({
-    students: {
-        type: Array
-    }
-})
+const status=[
+    {id:'present', name:'present'},
+    {id:'absent', name:'absent'},
+    {id:'late', name:'late'},
+
+]
 
 const form = useForm({
+    student_name: '',
     student_code: '',
     date: '',
     status: '',
@@ -39,13 +42,13 @@ const submit = () => {
                             <form @submit.prevent="submit" class="flex flex-col gap-4">
                                 <div class="form-group">
                                     <InputLabel for="student_name" value="Student Name" />
-                                    <SelectInput id="student_name" v-model="form.student_name"
+                                    <TextInput id="student_name" type="text" v-model="form.student_name"
                                         :disabled="form.processing" />
                                     <InputError :message="form.errors.student_name" />
                                 </div>
                                 <div class="form-group">
                                     <InputLabel for="student_code" value="Student Code" />
-                                    <SelectInput id="student_code" v-model="form.student_code" :options="students"
+                                    <TextInput id="student_code" type="text" v-model="form.student_code"
                                         :disabled="form.processing" />
                                     <InputError :message="form.errors.student_code" />
                                 </div>
@@ -58,8 +61,8 @@ const submit = () => {
 
                                 <div class="form-group">
                                     <InputLabel for="status" value="Status" />
-                                    <SelectInput id="status" v-model="form.status" :options="['Present', 'Absent']"
-                                        :disabled="form.processing" />
+                                    <SelectInput id="status" v-model="form.status" :options="status"
+                                        :disabled="form.processing" :optionValue="`name`" :optionLabel="`name`" />
                                     <InputError :message="form.errors.status" />
                                 </div>
 

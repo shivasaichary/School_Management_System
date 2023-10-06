@@ -26,7 +26,7 @@ const deleteSchool = (school) => {
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class=" bg-black bg-transparent overflow-hidden shadow-sm sm:rounded-lg">
+                <div class=" bg-black overflow-hidden shadow-2xl xl:rounded-3xl">
 
                     <div class="p-6">
                         <Link class="btn btn-primary" v-if="('school.create')" :href="route('admin.schools.create')">

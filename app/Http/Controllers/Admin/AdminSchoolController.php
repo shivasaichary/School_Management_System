@@ -5,25 +5,13 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 
 use App\Models\School;
-use App\Models\Role;
 use App\Models\User;
 use App\Models\City;
-
 use Inertia\Inertia;
 use Inertia\Response;
-
-use App\Enums\RoleName;
 use App\Http\Requests\Admin\StoreSchoolRequest;
-
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\DB;
 use App\Http\Requests\Admin\UpdateSchoolRequest;
-
-use App\Notifications\PrincipalInvitation;
-use Illuminate\Support\Facades\Auth;
-use Symfony\Component\HttpFoundation\RedirectResponse as HttpFoundationRedirectResponse;
-// use App\Notifications\SchoolUserInvitation;
-
 
 class AdminSchoolController extends Controller
 {

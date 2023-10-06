@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('address');
             $table->timestamps();
 
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->nullable()->constrained();
 
             // $table->foreignId('student_id')->constrained('students');
 

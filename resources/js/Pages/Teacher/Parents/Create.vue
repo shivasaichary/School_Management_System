@@ -42,17 +42,17 @@ const submit = () => {
                         <div class="p-6 text-gray-900 overflow-x-scroll">
                             <form @submit.prevent="submit" class="flex flex-col gap-4">
 
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <InputLabel for="cls_id" value="class id" />
                                     <TextInput id="cls_id" type="text" v-model="form.cls_id" :disabled="form.processing" />
                                     <InputError :message="form.errors.cls_id" />
-                                </div>
+                                </div> -->
 
                                 <div class="form-group">
                                     <InputLabel for="parent_name" value="parent Name" />
-                                    <TextInput id="parent_name" type="text" v-model="form.name"
+                                    <TextInput id="parent_name" type="text" v-model="form.parent_name"
                                         :disabled="form.processing" />
-                                    <InputError :message="form.errors.name" />
+                                    <InputError :message="form.errors.parent_name" />
                                 </div>
 
                                 <div class="form-group">

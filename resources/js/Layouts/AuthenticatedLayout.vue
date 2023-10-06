@@ -18,7 +18,6 @@ const showingNavigationDropdown = ref(false);
         <div class="min-h-screen bg-gray-50">
             <nav class="bg-white border-b border-gray-100">
 
-
                 <!-- Primary Navigation Menu -->
 
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -63,19 +62,12 @@ const showingNavigationDropdown = ref(false);
                                     Student Results
                                 </NavLink>
 
-                                <!-- v-if="can('school.viewAny')"  v-if= "('teacher.viewAny')"-->
+                                <!-- <NavLink>Fee Details</NavLink> -->
 
-                                <!--
-                                <NavLink v-if="userHasPermission" :href="route('admin.schools.index')"
-                                    :active="route().current('admin.schools.index')">
-                                    Schools
+                                <!-- <NavLink href="https://dashboard.stripe.com/login" target="_blank">
+                                    Fee Details
                                 </NavLink> -->
 
-                                <!--
-                                <NavLink v-if="('student.viewAny') && ('cls.viewAny')"
-                                    :href="route('teacher.section')" :active="route().current('teacher.section')">School
-                                    Section
-                                </NavLink> -->
 
                             </div>
 

@@ -155,5 +155,25 @@ class PermissionSeeder extends Seeder
         $permission = Permission::updateOrCreate(['name' => 'delete_attendance', 'guard_name' => 'web']);
         $admin->givePermissionTo($permission);
         $teacher->givePermissionTo($permission);
+
+        // TEACHER - PERMISSIONS: [PARENTS - CRUD]
+
+        $permission = Permission::updateOrCreate(['name' => 'view_parent', 'guard_name' => 'web']);
+        $admin->givePermissionTo($permission);
+        $teacher->givePermissionTo($permission);
+
+        $permission = Permission::updateOrCreate(['name' => 'create_parent', 'guard_name' => 'web']);
+        $admin->givePermissionTo($permission);
+        $teacher->givePermissionTo($permission);
+
+        $permission = Permission::updateOrCreate(['name' => 'update_parent', 'guard_name' => 'web']);
+        $admin->givePermissionTo($permission);
+        $teacher->givePermissionTo($permission);
+
+        $permission = Permission::updateOrCreate(['name' => 'delete_parent', 'guard_name' => 'web']);
+        $admin->givePermissionTo($permission);
+        $teacher->givePermissionTo($permission);
+
+
     }
 }

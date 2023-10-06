@@ -22,6 +22,8 @@ class UpdateAttendanceRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'student_name' => ['required', 'string'],
+            'student_code' => ['required', 'string'],
             'date' => ['required', 'date'],
             'status' => ['required', 'string', 'in:present,absent,late'],
         ];

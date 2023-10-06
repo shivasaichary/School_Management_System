@@ -1,38 +1,47 @@
 <script setup>
 import TeacherAuthenticatedLayout from '@/Layouts/TeacherAuthenticatedLayout.vue'
+import { Head, useForm } from '@inertiajs/vue3'
 import InputError from '@/Components/InputError.vue'
 import InputLabel from '@/Components/InputLabel.vue'
 import PrimaryButton from '@/Components/PrimaryButton.vue'
 import SelectInput from '@/Components/SelectInput.vue'
-import { Head, useForm } from '@inertiajs/vue3'
+import TextInput from '@/Components/TextInput.vue'
 
 const props = defineProps({
     students: {
         type: Array
     },
-    studentAttendance: {
+    attendance: {
         type: Object
     }
 })
 
+const status=[
+    {id:'present', name:'present'},
+    {id:'absent', name:'absent'},
+    {id:'late', name:'late'},
+
+]
+
 const form = useForm({
-    student_code: props.studentAttendance.student_code,
-    date: props.studentAttendance.date,
-    status: props.studentAttendance.status
+    student_name: props.attendance.student_name,
+    student_code: props.attendance.student_code,
+    date: props.attendance.date,
+    status: props.attendance.status
 })
 
 const submit = () => {
-    form.put(route('teacher.attendance.update', props.studentAttendance))
+    form.put(route('teacher.attendance.update', props.attendance))
 }
 </script>
 
 <template>
     <TeacherAuthenticatedLayout>
 
-        <Head :title="'Edit Student Attendance for ' + studentAttendance.student_name" />
+        <Head :title="'Edit Student attendance for ' + attendance.student_name" />
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ 'Edit Student Attendance for ' + studentAttendance.student_name }}
+                {{ 'Edit Student attendance for ' + attendance.student_name }}
             </h2>
         </template>
         <div class="py-12">
@@ -44,14 +53,14 @@ const submit = () => {
 
                                 <div class="form-group">
                                     <InputLabel for="student_name" value="Student Name" />
-                                    <SelectInput id="student_name" v-model="form.student_name"
+                                    <TextInput id="student_name" type="text" v-model="form.student_name"
                                         :disabled="form.processing" />
                                     <InputError :message="form.errors.student_name" />
                                 </div>
 
                                 <div class="form-group">
                                     <InputLabel for="student_code" value="Student Code" />
-                                    <SelectInput id="student_code" v-model="form.student_code"
+                                    <TextInput id="student_code" type="text" v-model="form.student_code"
                                         :disabled="form.processing" />
                                     <InputError :message="form.errors.student_code" />
                                 </div>
@@ -64,13 +73,13 @@ const submit = () => {
 
                                 <div class="form-group">
                                     <InputLabel for="status" value="Status" />
-                                    <SelectInput id="status" v-model="form.status" :options="['Present', 'Absent']"
-                                        :disabled="form.processing" />
+                                    <SelectInput id="status" v-model="form.status" :options="status"
+                                        :disabled="form.processing" :optionValue="`name`" :optionLabel="`name`" />
                                     <InputError :message="form.errors.status" />
                                 </div>
 
                                 <div>
-                                    <PrimaryButton :processing="form.processing">Update Student Attendance</PrimaryButton>
+                                    <PrimaryButton :processing="form.processing">Update Student attendance</PrimaryButton>
                                 </div>
                             </form>
                         </div>

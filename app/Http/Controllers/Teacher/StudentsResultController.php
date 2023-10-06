@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Teacher;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Teacher\StoreResultRequest;
+use App\Http\Requests\Teacher\UpdateResultRequest;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Result;
@@ -98,7 +99,7 @@ class StudentsResultController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Result $result)
+    public function update(UpdateResultRequest $request, Result $result)
     {
         $user = auth()->user();
 
@@ -116,7 +117,7 @@ class StudentsResultController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Result $result, string $id)
+    public function destroy(Result $result)
     {
         $user = auth()->user();
 

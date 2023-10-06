@@ -25,7 +25,7 @@ class StoreResultRequest extends FormRequest
         $oneYearAgo = Carbon::now()->subYear();
 
         return [
-            'subject_name' => ['required', 'string', 'in:telugu,hindi,english,maths,science,social,computers,yoga,games'],
+            'subject_name' => ['required', 'string'],
             'marks_obtained' => ['required', 'numeric', 'between:90,100'],
             'date_of_exam' => ['required', 'date', 'before_or_equal:' . $oneYearAgo],
         ];

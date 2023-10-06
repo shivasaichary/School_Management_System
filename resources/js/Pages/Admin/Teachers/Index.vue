@@ -23,7 +23,7 @@ defineProps({
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-black bg-transparent overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="bg-black overflow-hidden shadow-2xl xl:rounded-3xl">
 
                     <div class="p-6">
                         <Link class="btn btn-primary" v-if="('teacher.create')" :href="route('admin.teachers.create')">
@@ -52,6 +52,8 @@ defineProps({
                                     <th>Gender</th>
 
                                     <th>Subject</th>
+
+                                    <th>Designation</th>
 
                                     <th>Phone Number</th>
 
@@ -88,6 +90,8 @@ defineProps({
                                     <td>{{ teacher.gender }}</td>
 
                                     <td>{{ teacher.subject }}</td>
+
+                                    <td>{{ teacher.designation }}</td>
 
                                     <td>{{ teacher.phone_number }}</td>
 

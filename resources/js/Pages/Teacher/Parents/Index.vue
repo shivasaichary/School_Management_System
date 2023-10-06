@@ -1,6 +1,6 @@
 <script setup>
 import TeacherAuthenticatedLayout from '@/Layouts/TeacherAuthenticatedLayout.vue';
-import { Head } from '@inertiajs/vue3';
+import { Head, useForm } from '@inertiajs/vue3';
 import { Link } from '@inertiajs/vue3';
 
 defineProps({
@@ -8,6 +8,14 @@ defineProps({
         type: Array
     }
 })
+
+const form = useForm({
+
+})
+
+const deleteParents = (parent) => {
+    form.delete(route('teacher.parents.delete', parent))
+}
 </script>
 
 <template>
@@ -16,12 +24,12 @@ defineProps({
         <Head title="parents" />
 
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">parents Data</h2>
+            <h2 class="font-semibold text-xl text-pink-800 leading-tight">Parents Data</h2>
         </template>
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="bg-black overflow-hidden shadow-2xl xl:rounded-3xl">
 
                     <div class="p-6">
                         <Link class="btn btn-primary" v-if="('parent.create')" :href="route('teacher.parents.create')">
@@ -29,7 +37,7 @@ defineProps({
                         </Link>
                     </div>
 
-                    <div class="p-6 text-gray-900 overflow-x-scroll">
+                    <div class="p-6 text-gray-900 bg-rose-300 overflow-x-scroll">
                         <table class="table">
 
                             <thead>
@@ -86,9 +94,13 @@ defineProps({
                                     </td>
 
                                     <td>
-                                        <Link :href="route('teacher.parents.update', parent)" class="btn btn-secondary">
+                                        <!-- <Link :href="route('teacher.parents.update', parent)" class="btn btn-secondary">
                                         Delete
-                                        </Link>
+                                        </Link> -->
+
+                                        <form @submit.prevent="deleteParents(parent)" method="post">
+                                            <button type="submit" class="btn btn-secondary">Delete</button>
+                                        </form>
                                     </td>
 
                                 </tr>

@@ -2,13 +2,22 @@
 <script setup>
 import TeacherAuthenticatedLayout from '@/Layouts/TeacherAuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
-import { Link } from '@inertiajs/vue3';
+import { Link, useForm } from '@inertiajs/vue3';
 
 defineProps({
     attendances: {
         type: Array
     }
 })
+
+const form = useForm({
+
+})
+
+const deleteAttendance = (attendance) => {
+    form.delete(route('teacher.attendance.delete', attendance))
+}
+
 </script>
 
 <template>
@@ -20,7 +29,7 @@ defineProps({
         </template>
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-black bg-transparent overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="bg-black overflow-hidden shadow-2xl xl:rounded-3xl">
                     <div class="p-6">
                         <Link class="btn btn-primary" :href="route('teacher.attendance.create')">
                         Add New Attendance
@@ -53,10 +62,18 @@ defineProps({
                                         </Link>
                                     </td>
                                     <td>
-                                        <Link :href="route('teacher.attendance.update', attendance)"
+                                        <!-- <Link :href="route('teacher.attendance.update', attendance)"
                                             class="btn btn-secondary">
                                         Delete
-                                        </Link>
+                                        </Link> -->
+
+                                        <form @submit.prevent="deleteAttendance(attendance)" method="post">
+
+                                            <button type="submit" class="btn btn-secondary">
+                                                Delete
+                                            </button>
+                                        </form>
+
                                     </td>
                                 </tr>
                             </tbody>

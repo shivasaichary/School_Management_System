@@ -19,8 +19,8 @@ defineProps({
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-green-400 bg-transparent overflow-hidden shadow-sm sm:rounded-xl">
-                    <div class="p-6 text-gray-900 ">
+                <div class="overflow-hidden shadow-2xl xl:rounded-3xl">
+                    <div class="p-6 text-gray-900 bg-rose-200 ">
                         <table class="table">
                             <thead>
                                 <tr>

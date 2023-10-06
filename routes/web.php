@@ -35,13 +35,11 @@ use App\Http\Controllers\Teacher\ClsController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-
 Route::get('/teacher-home', [HomeController::class, 'teacherHome'])->name('teacher.home');
 Route::get('/student-home', [HomeController::class, 'studentHome'])->name('student.home');
 Route::get('/parent-home', [HomeController::class, 'parentHome'])->name('parent.home');
 
 // Route::get('teacher/classes', [ClsController::class, 'index'])->name('teacher.classes.index');
-
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -53,12 +51,8 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/teacher-home', [HomeController::class, 'teacherHome'])->name('teacher.home');
 
-
 Route::get('admin/school/{school}', [SchoolController::class, 'show'])
     ->name('school');
-
-    
-
 
 // Route::get('student/attendance', [StudentAttendanceController::class, 'index'])->name('student.attendance.index');
 
@@ -69,6 +63,7 @@ Route::middleware(["auth:sanctum", 'isAdmin'])->group(function () {
     require __DIR__ . '/admin.php';
 });
 
+// isTeacher
 Route::middleware(['auth:sanctum', 'isTeacher'])->group(function () {
     require __DIR__ . '/teacher.php';
 });

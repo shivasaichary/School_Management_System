@@ -98,11 +98,11 @@ class StudentsAttendanceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateAttendanceRequest $request, Attendance $attendance):RedirectResponse
+    public function update(UpdateAttendanceRequest $request, Attendance $attendance)
     {
         $user = auth()->user();
 
-        if (!$user->hasPermissionTo('update_teacher', 'web')) {
+        if (!$user->hasPermissionTo('update_attendance', 'web')) {
             return response('Unauthorized');
         }
 

@@ -63,7 +63,8 @@ const showingNavigationDropdown = ref(false);
                                     Attendance Data
                                 </NavLink>
 
-                                <NavLink>
+                                <NavLink v-if="('teacher.viewAny')" :href="route('teacher.parents.index')"
+                                    :active="route().current('teacher.parents.index')">
                                     Parents Data
                                 </NavLink>
 

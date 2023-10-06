@@ -17,7 +17,6 @@ class StudentResultsSeeder extends Seeder
             $studentId = 'TES-ID :'. $faker->numberBetween(1, 100);
             $studentName = 'student';
             $subjectcode = 'TESUB-ID :'. $faker->numberBetween(1, 10);
-            // $subjectName = $faker->word;
             $subjectName = collect([
                 'TELUGU',
                 'HINDI',

@@ -1,14 +1,24 @@
 <script setup>
 import TeacherAuthenticatedLayout from '@/Layouts/TeacherAuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
-import { Link } from '@inertiajs/vue3';
+import { Link, useForm } from '@inertiajs/vue3';
 
 defineProps({
     results: {
         type: Array
     }
 })
+
+const form = useForm({
+
+})
+
+const deleteResult = (result) => {
+    form.delete(route('teacher.results.delete', result))
+}
+
 </script>
+
 
 <template>
     <TeacherAuthenticatedLayout>
@@ -21,14 +31,14 @@ defineProps({
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="bg-black overflow-hidden shadow-2xl xl:rounded-3xl">
                     <div class="p-6">
                         <Link class="btn btn-primary" :href="route('teacher.results.create')">
                         Add New Student Result
                         </Link>
                     </div>
 
-                    <div class="p-6 text-gray-900 overflow-x-scroll">
+                    <div class="p-6 text-gray-900 bg-purple-100 overflow-x-scroll">
                         <table class="table">
                             <thead>
                                 <tr>
@@ -61,10 +71,18 @@ defineProps({
                                     </td>
 
                                     <td>
-                                        <Link :href="route('teacher.results.update', result)"
+                                        <!-- <Link :href="route('teacher.results.update', result)"
                                             class="btn btn-secondary">
                                         Delete
-                                        </Link>
+                                        </Link> -->
+
+                                        <form @submit.prevent="deleteResult(result)" method="post">
+
+                                            <button type="submit" class="btn btn-secondary">
+                                                Delete
+                                            </button>
+                                        </form>
+
                                     </td>
 
                                 </tr>
